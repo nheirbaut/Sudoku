@@ -8,5 +8,8 @@ TEMPLATE = lib
 
 TARGET = SudokuSolver
 
-SOURCES +=
-HEADERS +=
+SOURCES += \
+    Board.cpp
+
+HEADERS += \
+    Board.h

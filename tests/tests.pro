@@ -6,6 +6,7 @@ CONFIG -= qt
 
 TEMPLATE = app
 
-SOURCES +=
+SOURCES += \
+    TestBoardCreation.cpp
 
 LIBS += -L../src -lSudokuSolver
