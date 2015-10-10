@@ -2,7 +2,7 @@ INCLUDEPATH += $$PWD/src
 SRC_DIR = $$PWD
 
 # Global compile flag defaults
-QMAKE_CXXFLAGS += -O2 -std=c++11 -Wall -Weffc++ -pedantic  \
+QMAKE_CXXFLAGS += -O2 -std=c++14 -Wall -Weffc++ -pedantic  \
                 -pedantic-errors -Wextra -Waggregate-return -Wcast-align \
                 -Wcast-qual \
                 -Wdisabled-optimization \
