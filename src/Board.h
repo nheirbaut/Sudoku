@@ -2,6 +2,7 @@
 #define BOARD_H
 
 #include <cstdint>
+#include <vector>
 
 namespace Sudoku {
 
@@ -13,22 +14,36 @@ class Board
 public:
 
     using FieldType = std::uint8_t;
+    using RowIndexType = FieldType;
+    using ColumnIndexType = FieldType;
 
-    static const FieldType MAX_FIELD_VALUE;
+    static const FieldType UNSET_FIELD_VALUE;
+    static const FieldType MAX_BLOCKSIZE;
 
 public:
 
     /**
      * Creates a new Sudoku board.
      * A Sudoku board must always be a square composed of other squares that
-     * have exactly as many elements as the rib of the Sudoku board.
+     * have exactly as many elements as the rib of the entire Sudoku board.
      * @param blockSize The block size for the board. On a standard Sudoku board
      *                  this value will be 9.
-     * @throws std::invalid_argument if @p blockSize does not lead to a square
-     *                               Sudoku board.
-     * @throws std::out_of_range if @p blockSize exceeds Board::MAX_FIELD_VALUE.
+     * @throw std::invalid_argument if @p blockSize does not lead to a square
+     *                              Sudoku board.
+     * @throw std::out_of_range if @p blockSize exceeds Board::MAX_FIELD_VALUE.
      */
     explicit Board(FieldType blockSize);
+
+    FieldType getValueForField(RowIndexType row, ColumnIndexType column) const;
+
+private:
+
+    FieldType getValueIndex(RowIndexType row, ColumnIndexType column) const;
+
+private:
+
+    const FieldType m_blockSize;
+    std::vector<FieldType> m_values;
 
 }; // class Board
 
