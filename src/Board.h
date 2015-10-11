@@ -49,6 +49,16 @@ public:
      */
     FieldType getValueForField(RowIndexType row, ColumnIndexType column) const;
 
+    /**
+     * Set the given value at the given location on the board. The top-left
+     * location is coordinate (0,0).
+     * @param row The row index of the value on the board
+     * @param column The column index of the value on the board
+     * @param value The value to set on the board.
+     * @throw std::out_of_range if the values for @p row or @p column are
+     *                          off the defined board or if the value of
+     *                          @p value is too large.
+     */
     void setValueForField(RowIndexType row, ColumnIndexType column, FieldType value);
 
 private:
