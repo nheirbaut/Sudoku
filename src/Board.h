@@ -2,7 +2,7 @@
 #define BOARD_H
 
 #include <cstdint>
-#include <vector>
+#include <memory>
 
 namespace Sudoku {
 
@@ -34,6 +34,10 @@ public:
      */
     explicit Board(FieldType blockSize);
 
+    ~Board();
+    Board(Board&&);
+    Board& operator=(Board&&);
+
     /**
      * Get the value at the given location on the board. The top-left location
      * is coordinate (0,0);
@@ -47,13 +51,8 @@ public:
 
 private:
 
-    FieldType getValueIndex(RowIndexType row, ColumnIndexType column) const;
-    void validateRowAndColumnIndex(RowIndexType row, ColumnIndexType column) const;
-
-private:
-
-    const FieldType m_blockSize;
-    std::vector<FieldType> m_values;
+    struct Implementation;
+    std::unique_ptr<Implementation> m_implementation;
 
 }; // class Board
 
