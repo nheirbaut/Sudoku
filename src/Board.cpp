@@ -66,6 +66,18 @@ Board::FieldType Board::getValueForField(Board::RowIndexType row, Board::ColumnI
     return m_implementation->m_values[m_implementation->getValueIndex(row, column)];
 }
 
+void Board::setValueForField(Board::RowIndexType row, Board::ColumnIndexType column, Board::FieldType value)
+{
+    m_implementation->validateRowAndColumnIndex(row, column);
+
+    if (value > m_implementation->m_blockSize)
+    {
+        throw std::out_of_range("The value is too large");
+    }
+
+    m_implementation->m_values[m_implementation->getValueIndex(row, column)] = value;
+}
+
 Board::Implementation::Implementation(FieldType blockSize)
     : m_blockSize(blockSize),
       m_values(blockSize * blockSize, UNSET_FIELD_VALUE)
@@ -75,7 +87,7 @@ Board::Implementation::Implementation(FieldType blockSize)
 Board::FieldType
 Board::Implementation::getValueIndex(Board::RowIndexType row, Board::ColumnIndexType column) const
 {
-    return m_values[row * m_blockSize + column];
+    return row * m_blockSize + column;
 }
 
 void Board::Implementation::validateRowAndColumnIndex(Board::RowIndexType row, Board::ColumnIndexType column) const

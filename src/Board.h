@@ -49,6 +49,8 @@ public:
      */
     FieldType getValueForField(RowIndexType row, ColumnIndexType column) const;
 
+    void setValueForField(RowIndexType row, ColumnIndexType column, FieldType value);
+
 private:
 
     struct Implementation;
