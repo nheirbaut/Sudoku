@@ -46,6 +46,7 @@ Board::Board(FieldType blockSize)
 
 Board::FieldType Board::getValueForField(Board::RowIndexType row, Board::ColumnIndexType column) const
 {
+    validateRowAndColumnIndex(row, column);
     return m_values[getValueIndex(row, column)];
 }
 
@@ -53,4 +54,17 @@ Board::FieldType
 Board::getValueIndex(Board::RowIndexType row, Board::ColumnIndexType column) const
 {
     return m_values[row * m_blockSize + column];
+}
+
+void Board::validateRowAndColumnIndex(Board::RowIndexType row, Board::ColumnIndexType column) const
+{
+    if (row >= m_blockSize)
+    {
+        throw std::out_of_range("Row index value is out of range");
+    }
+
+    if (column >= m_blockSize)
+    {
+        throw std::out_of_range("Column index value is out of range");
+    }
 }

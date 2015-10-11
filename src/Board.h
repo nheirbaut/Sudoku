@@ -34,11 +34,21 @@ public:
      */
     explicit Board(FieldType blockSize);
 
+    /**
+     * Get the value at the given location on the board. The top-left location
+     * is coordinate (0,0);
+     * @param row The row index of the value on the board
+     * @param column The column index of the value on the board
+     * @return The set value at the given row and column on the board.
+     * @throw std::out_of_range if the values for @p row or @p column are
+     *                          off the defined board.
+     */
     FieldType getValueForField(RowIndexType row, ColumnIndexType column) const;
 
 private:
 
     FieldType getValueIndex(RowIndexType row, ColumnIndexType column) const;
+    void validateRowAndColumnIndex(RowIndexType row, ColumnIndexType column) const;
 
 private:
 
