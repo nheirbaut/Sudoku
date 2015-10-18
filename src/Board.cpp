@@ -78,14 +78,43 @@ void Board::setValueForField(Board::RowIndexType row, Board::ColumnIndexType col
     m_implementation->m_values[m_implementation->getValueIndex(row, column)] = value;
 }
 
+Board::iterator Board::begin()
+{
+    return iterator(m_implementation->m_values.begin());
+}
+
+Board::iterator Board::end()
+{
+    return iterator(m_implementation->m_values.end());
+}
+
+Board::const_iterator Board::begin() const
+{
+    return const_iterator(m_implementation->m_values.begin());
+}
+
+Board::const_iterator Board::end() const
+{
+    return const_iterator(m_implementation->m_values.end());
+}
+
+Board::const_iterator Board::cbegin() const
+{
+    return const_iterator(m_implementation->m_values.cbegin());
+}
+
+Board::const_iterator Board::cend() const
+{
+    return const_iterator(m_implementation->m_values.cend());
+}
+
 Board::Implementation::Implementation(FieldType blockSize)
     : m_blockSize(blockSize),
       m_values(blockSize * blockSize, UNSET_FIELD_VALUE)
 {
 }
 
-Board::FieldType
-Board::Implementation::getValueIndex(Board::RowIndexType row, Board::ColumnIndexType column) const
+Board::FieldType Board::Implementation::getValueIndex(Board::RowIndexType row, Board::ColumnIndexType column) const
 {
     return row * m_blockSize + column;
 }

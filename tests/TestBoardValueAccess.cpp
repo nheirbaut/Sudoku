@@ -44,3 +44,17 @@ TEST_CASE("Can set a valid value on the board", "[Board Access]")
 
     REQUIRE(board.getValueForField(0, 0) == validValue);
 }
+
+TEST_CASE("Can iterate over all board field", "[Board Access]")
+{
+    const Sudoku::Board::FieldType blockSize {4};
+    auto board = Sudoku::Board {blockSize};
+
+    std::size_t numberOfFieldsOnBoard {0};
+    for (auto boardIterator = board.begin(); boardIterator != board.end(); ++boardIterator)
+    {
+        ++numberOfFieldsOnBoard;
+    }
+
+    REQUIRE(numberOfFieldsOnBoard == blockSize * blockSize);
+}

@@ -1,6 +1,9 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+#include <boost/range/concepts.hpp>
+#include <boost/range/detail/any_iterator.hpp>
+
 #include <cstdint>
 #include <memory>
 
@@ -16,6 +19,20 @@ public:
     using FieldType = std::uint8_t;
     using RowIndexType = FieldType;
     using ColumnIndexType = FieldType;
+
+    using iterator = boost::range_detail::any_iterator<
+                        FieldType,
+                        boost::forward_traversal_tag,
+                        FieldType&,
+                        std::ptrdiff_t
+                     >;
+
+    using const_iterator = boost::range_detail::any_iterator<
+                            const FieldType,
+                            boost::forward_traversal_tag,
+                            const FieldType&,
+                            std::ptrdiff_t
+                           >;
 
     static const FieldType UNSET_FIELD_VALUE;
     static const FieldType MAX_BLOCKSIZE;
@@ -60,6 +77,15 @@ public:
      *                          @p value is too large.
      */
     void setValueForField(RowIndexType row, ColumnIndexType column, FieldType value);
+
+    iterator begin();
+    iterator end();
+
+    const_iterator begin() const;
+    const_iterator end() const;
+
+    const_iterator cbegin() const;
+    const_iterator cend() const;
 
 private:
 
