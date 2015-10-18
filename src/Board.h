@@ -16,26 +16,26 @@ class Board
 {
 public:
 
-    using FieldType = std::uint8_t;
-    using RowIndexType = FieldType;
-    using ColumnIndexType = FieldType;
+    using CellType = std::uint8_t;
+    using RowIndexType = CellType;
+    using ColumnIndexType = CellType;
 
     using iterator = boost::range_detail::any_iterator<
-                        FieldType,
+                        CellType,
                         boost::forward_traversal_tag,
-                        FieldType&,
+                        CellType&,
                         std::ptrdiff_t
                      >;
 
     using const_iterator = boost::range_detail::any_iterator<
-                            const FieldType,
+                            const CellType,
                             boost::forward_traversal_tag,
-                            const FieldType&,
+                            const CellType&,
                             std::ptrdiff_t
                            >;
 
-    static const FieldType UNSET_FIELD_VALUE;
-    static const FieldType MAX_BLOCKSIZE;
+    static const CellType UNSET_CELL_VALUE;
+    static const CellType MAX_BLOCKSIZE;
 
 public:
 
@@ -47,9 +47,9 @@ public:
      *                  this value will be 9.
      * @throw std::invalid_argument if @p blockSize does not lead to a square
      *                              Sudoku board.
-     * @throw std::out_of_range if @p blockSize exceeds Board::MAX_FIELD_VALUE.
+     * @throw std::out_of_range if @p blockSize exceeds Board::MAX_CELL_VALUE.
      */
-    explicit Board(FieldType blockSize);
+    explicit Board(CellType blockSize);
 
     ~Board();
     Board(Board&&);
@@ -64,7 +64,7 @@ public:
      * @throw std::out_of_range if the values for @p row or @p column are
      *                          off the defined board.
      */
-    FieldType getValueForField(RowIndexType row, ColumnIndexType column) const;
+    CellType getValueForCell(RowIndexType row, ColumnIndexType column) const;
 
     /**
      * Set the given value at the given location on the board. The top-left
@@ -76,7 +76,7 @@ public:
      *                          off the defined board or if the value of
      *                          @p value is too large.
      */
-    void setValueForField(RowIndexType row, ColumnIndexType column, FieldType value);
+    void setValueForCell(RowIndexType row, ColumnIndexType column, CellType value);
 
     iterator begin();
     iterator end();

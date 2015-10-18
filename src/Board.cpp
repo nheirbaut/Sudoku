@@ -10,40 +10,40 @@ using namespace Sudoku;
 namespace
 {
 bool
-isPerfectSquare(Board::FieldType blockSize)
+isPerfectSquare(Board::CellType blockSize)
 {
-    auto root = static_cast<Board::FieldType>(std::round(std::sqrt(blockSize)));
+    auto root = static_cast<Board::CellType>(std::round(std::sqrt(blockSize)));
     return root * root == blockSize;
 }
 
-Board::FieldType
-maxValueOfFieldType()
+Board::CellType
+maxValueOfCellType()
 {
-    auto maxSystemValueOfFieldType = std::numeric_limits<Board::FieldType>::max();
-    return static_cast<Board::FieldType>(std::round(std::sqrt(maxSystemValueOfFieldType)));
+    auto maxSystemValueOfCellType = std::numeric_limits<Board::CellType>::max();
+    return static_cast<Board::CellType>(std::round(std::sqrt(maxSystemValueOfCellType)));
 }
 } // anonymous namespace
 
-const Board::FieldType Board::MAX_BLOCKSIZE = maxValueOfFieldType();
-const Board::FieldType Board::UNSET_FIELD_VALUE = 0;
+const Board::CellType Board::MAX_BLOCKSIZE = maxValueOfCellType();
+const Board::CellType Board::UNSET_CELL_VALUE = 0;
 
 struct Board::Implementation
 {
-    explicit Implementation(FieldType blockSize);
+    explicit Implementation(CellType blockSize);
 
-    FieldType getValueIndex(RowIndexType row, ColumnIndexType column) const;
+    CellType getValueIndex(RowIndexType row, ColumnIndexType column) const;
     void validateRowAndColumnIndex(RowIndexType row, ColumnIndexType column) const;
 
-    const FieldType m_blockSize;
-    std::vector<FieldType> m_values;
+    const CellType m_blockSize;
+    std::vector<CellType> m_values;
 
 }; // struct Board::Implementation
 
-Board::Board(FieldType blockSize)
+Board::Board(CellType blockSize)
     : m_implementation(std::make_unique<Implementation>(blockSize))
 {
-    static_assert(std::is_integral<FieldType>::value, "You cannot use a non-integral type as FieldType");
-    static_assert(std::is_unsigned<FieldType>::value, "You cannot use a signed type as FieldType");
+    static_assert(std::is_integral<CellType>::value, "You cannot use a non-integral type as CellType");
+    static_assert(std::is_unsigned<CellType>::value, "You cannot use a signed type as CellType");
 
     if (blockSize > Board::MAX_BLOCKSIZE)
     {
@@ -60,13 +60,13 @@ Board::~Board() = default;
 Board::Board(Board &&) = default;
 Board& Board::operator=(Board&&) = default;
 
-Board::FieldType Board::getValueForField(Board::RowIndexType row, Board::ColumnIndexType column) const
+Board::CellType Board::getValueForCell(Board::RowIndexType row, Board::ColumnIndexType column) const
 {
     m_implementation->validateRowAndColumnIndex(row, column);
     return m_implementation->m_values[m_implementation->getValueIndex(row, column)];
 }
 
-void Board::setValueForField(Board::RowIndexType row, Board::ColumnIndexType column, Board::FieldType value)
+void Board::setValueForCell(Board::RowIndexType row, Board::ColumnIndexType column, Board::CellType value)
 {
     m_implementation->validateRowAndColumnIndex(row, column);
 
@@ -108,13 +108,13 @@ Board::const_iterator Board::cend() const
     return const_iterator(m_implementation->m_values.cend());
 }
 
-Board::Implementation::Implementation(FieldType blockSize)
+Board::Implementation::Implementation(CellType blockSize)
     : m_blockSize(blockSize),
-      m_values(blockSize * blockSize, UNSET_FIELD_VALUE)
+      m_values(blockSize * blockSize, UNSET_CELL_VALUE)
 {
 }
 
-Board::FieldType Board::Implementation::getValueIndex(Board::RowIndexType row, Board::ColumnIndexType column) const
+Board::CellType Board::Implementation::getValueIndex(Board::RowIndexType row, Board::ColumnIndexType column) const
 {
     return row * m_blockSize + column;
 }

@@ -19,22 +19,22 @@ TEST_CASE("Can create a board that is a perfect square", "[Board Creation]")
     REQUIRE_NOTHROW(Sudoku::Board(9));
 }
 
-TEST_CASE("A newly created board has all fields properly initialised", "[Board Creation]")
+TEST_CASE("A newly created board has all cells properly initialised", "[Board Creation]")
 {
-    const Sudoku::Board::FieldType blockSize {9};
+    const Sudoku::Board::CellType blockSize {9};
     auto board = Sudoku::Board {blockSize};
-    unsigned int numberOfFieldsWithNoValueSet {0};
+    unsigned int numberOfCellsWithNoValueSet {0};
 
     for (Sudoku::Board::RowIndexType row {0}; row < blockSize; ++row)
     {
         for (Sudoku::Board::ColumnIndexType column {0}; column < blockSize; ++column)
         {
-            if (board.getValueForField(row, column) == Sudoku::Board::UNSET_FIELD_VALUE)
+            if (board.getValueForCell(row, column) == Sudoku::Board::UNSET_CELL_VALUE)
             {
-                ++numberOfFieldsWithNoValueSet;
+                ++numberOfCellsWithNoValueSet;
             }
         }
     }
 
-    REQUIRE(numberOfFieldsWithNoValueSet == blockSize * blockSize);
+    REQUIRE(numberOfCellsWithNoValueSet == blockSize * blockSize);
 }
