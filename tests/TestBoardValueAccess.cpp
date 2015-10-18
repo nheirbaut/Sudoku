@@ -34,6 +34,14 @@ TEST_CASE("Cannot set fields outside column range", "[Board Access]")
     REQUIRE_THROWS_AS(board.setValueForField(0, blockSize, Sudoku::Board::UNSET_FIELD_VALUE), std::out_of_range);
 }
 
+TEST_CASE("Cannot set an invalid value using a valid location", "[Board Access]")
+{
+    const Sudoku::Board::FieldType blockSize {4};
+    auto board = Sudoku::Board {blockSize};
+
+    REQUIRE_THROWS_AS(board.setValueForField(0, 0, Sudoku::Board::MAX_BLOCKSIZE + 1), std::out_of_range);
+}
+
 TEST_CASE("Can set a valid value on the board", "[Board Access]")
 {
     const Sudoku::Board::FieldType blockSize {4};
