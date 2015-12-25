@@ -1,10 +1,11 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+#include "Cell.h"
+
 #include <boost/range/concepts.hpp>
 #include <boost/range/detail/any_iterator.hpp>
 
-#include <cstdint>
 #include <memory>
 
 namespace Sudoku {
@@ -16,26 +17,24 @@ class Board
 {
 public:
 
-    using CellType = std::uint8_t;
-    using RowIndexType = CellType;
-    using ColumnIndexType = CellType;
+    using RowIndexType = Cell::ValueType;
+    using ColumnIndexType = Cell::ValueType;
 
     using iterator = boost::range_detail::any_iterator<
-                        CellType,
+                        Cell,
                         boost::forward_traversal_tag,
-                        CellType&,
+                        Cell&,
                         std::ptrdiff_t
                      >;
 
     using const_iterator = boost::range_detail::any_iterator<
-                            const CellType,
+                            const Cell,
                             boost::forward_traversal_tag,
-                            const CellType&,
+                            const Cell&,
                             std::ptrdiff_t
                            >;
 
-    static const CellType UNSET_CELL_VALUE;
-    static const CellType MAX_BLOCKSIZE;
+    static const Cell::ValueType MAX_BLOCKSIZE;
 
 public:
 
@@ -49,7 +48,7 @@ public:
      *                              Sudoku board.
      * @throw std::out_of_range if @p blockSize exceeds Board::MAX_CELL_VALUE.
      */
-    explicit Board(CellType blockSize);
+    explicit Board(Cell::ValueType blockSize);
 
     ~Board();
     Board(Board&&);
@@ -64,7 +63,7 @@ public:
      * @throw std::out_of_range if the values for @p row or @p column are
      *                          off the defined board.
      */
-    CellType getValueForCell(RowIndexType row, ColumnIndexType column) const;
+    Cell::ValueType getValueForCellAt(RowIndexType row, ColumnIndexType column) const;
 
     /**
      * Set the given value at the given location on the board. The top-left
@@ -76,7 +75,7 @@ public:
      *                          off the defined board or if the value of
      *                          @p value is too large.
      */
-    void setValueForCell(RowIndexType row, ColumnIndexType column, CellType value);
+    void setValueForCell(RowIndexType row, ColumnIndexType column, Cell::ValueType value);
 
     iterator begin();
     iterator end();

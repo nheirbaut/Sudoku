@@ -1,28 +1,34 @@
---- src/Cell.h
-+++ src/Cell.h
-@@ -1,10 +1,24 @@
- #ifndef CELL_H
- #define CELL_H
- 
-+#include <cstdint>
-+
-+namespace Sudoku {
-+
- class Cell
- {
- public:
-+
-+    using Type = std::uint8_t;
-+
-+public:
-+
-     Cell();
--};
-+
-+    Cell& operator=(const Cell& rhs);
-+
-+}; // class Cell
-+
-+} // namespace Sudoku
- 
- #endif // CELL_H
+#ifndef CELL_H
+#define CELL_H
+
+#include <cstdint>
+
+namespace Sudoku {
+
+/**
+ * @brief The Cell class
+ */
+class Cell
+{
+public:
+
+    using ValueType = std::uint8_t;
+    static const ValueType UNSET_CELL_VALUE;
+
+public:
+
+    Cell();
+
+    Cell& operator=(ValueType value);
+
+    operator ValueType() const;
+
+private:
+
+    ValueType m_value;
+
+}; // class Cell
+
+} // namespace Sudoku
+
+#endif // CELL_H

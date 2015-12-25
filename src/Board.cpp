@@ -10,40 +10,39 @@ using namespace Sudoku;
 namespace
 {
 bool
-isPerfectSquare(Board::CellType blockSize)
+isPerfectSquare(Cell::ValueType blockSize)
 {
-    auto root = static_cast<Board::CellType>(std::round(std::sqrt(blockSize)));
+    auto root = static_cast<Cell::ValueType>(std::round(std::sqrt(blockSize)));
     return root * root == blockSize;
 }
 
-Board::CellType
+Cell::ValueType
 maxValueOfCellType()
 {
-    auto maxSystemValueOfCellType = std::numeric_limits<Board::CellType>::max();
-    return static_cast<Board::CellType>(std::round(std::sqrt(maxSystemValueOfCellType)));
+    auto maxSystemValueOfCellType = std::numeric_limits<Cell::ValueType>::max();
+    return static_cast<Cell::ValueType>(std::round(std::sqrt(maxSystemValueOfCellType)));
 }
 } // anonymous namespace
 
-const Board::CellType Board::MAX_BLOCKSIZE = maxValueOfCellType();
-const Board::CellType Board::UNSET_CELL_VALUE = 0;
+const Cell::ValueType Board::MAX_BLOCKSIZE = maxValueOfCellType();
 
 struct Board::Implementation
 {
-    explicit Implementation(CellType blockSize);
+    explicit Implementation(Cell::ValueType blockSize);
 
-    CellType getValueIndex(RowIndexType row, ColumnIndexType column) const;
+    Cell::ValueType getCellIndex(RowIndexType row, ColumnIndexType column) const;
     void validateRowAndColumnIndex(RowIndexType row, ColumnIndexType column) const;
 
-    const CellType m_blockSize;
-    std::vector<CellType> m_values;
+    const Cell::ValueType m_blockSize;
+    std::vector<Cell> m_cells;
 
 }; // struct Board::Implementation
 
-Board::Board(CellType blockSize)
+Board::Board(Cell::ValueType blockSize)
     : m_implementation(std::make_unique<Implementation>(blockSize))
 {
-    static_assert(std::is_integral<CellType>::value, "You cannot use a non-integral type as CellType");
-    static_assert(std::is_unsigned<CellType>::value, "You cannot use a signed type as CellType");
+    static_assert(std::is_integral<Cell::ValueType>::value, "You cannot use a non-integral type as CellType");
+    static_assert(std::is_unsigned<Cell::ValueType>::value, "You cannot use a signed type as CellType");
 
     if (blockSize > Board::MAX_BLOCKSIZE)
     {
@@ -60,13 +59,13 @@ Board::~Board() = default;
 Board::Board(Board &&) = default;
 Board& Board::operator=(Board&&) = default;
 
-Board::CellType Board::getValueForCell(Board::RowIndexType row, Board::ColumnIndexType column) const
+Cell::ValueType Board::getValueForCellAt(Board::RowIndexType row, Board::ColumnIndexType column) const
 {
     m_implementation->validateRowAndColumnIndex(row, column);
-    return m_implementation->m_values[m_implementation->getValueIndex(row, column)];
+    return m_implementation->m_cells[m_implementation->getCellIndex(row, column)];
 }
 
-void Board::setValueForCell(Board::RowIndexType row, Board::ColumnIndexType column, Board::CellType value)
+void Board::setValueForCell(Board::RowIndexType row, Board::ColumnIndexType column, Cell::ValueType value)
 {
     m_implementation->validateRowAndColumnIndex(row, column);
 
@@ -75,46 +74,46 @@ void Board::setValueForCell(Board::RowIndexType row, Board::ColumnIndexType colu
         throw std::out_of_range("The value is too large");
     }
 
-    m_implementation->m_values[m_implementation->getValueIndex(row, column)] = value;
+    m_implementation->m_cells[m_implementation->getCellIndex(row, column)] = value;
 }
 
 Board::iterator Board::begin()
 {
-    return iterator(m_implementation->m_values.begin());
+    return iterator(m_implementation->m_cells.begin());
 }
 
 Board::iterator Board::end()
 {
-    return iterator(m_implementation->m_values.end());
+    return iterator(m_implementation->m_cells.end());
 }
 
 Board::const_iterator Board::begin() const
 {
-    return const_iterator(m_implementation->m_values.begin());
+    return const_iterator(m_implementation->m_cells.begin());
 }
 
 Board::const_iterator Board::end() const
 {
-    return const_iterator(m_implementation->m_values.end());
+    return const_iterator(m_implementation->m_cells.end());
 }
 
 Board::const_iterator Board::cbegin() const
 {
-    return const_iterator(m_implementation->m_values.cbegin());
+    return const_iterator(m_implementation->m_cells.cbegin());
 }
 
 Board::const_iterator Board::cend() const
 {
-    return const_iterator(m_implementation->m_values.cend());
+    return const_iterator(m_implementation->m_cells.cend());
 }
 
-Board::Implementation::Implementation(CellType blockSize)
+Board::Implementation::Implementation(Cell::ValueType blockSize)
     : m_blockSize(blockSize),
-      m_values(blockSize * blockSize, UNSET_CELL_VALUE)
+      m_cells(blockSize * blockSize)
 {
 }
 
-Board::CellType Board::Implementation::getValueIndex(Board::RowIndexType row, Board::ColumnIndexType column) const
+Cell::ValueType Board::Implementation::getCellIndex(Board::RowIndexType row, Board::ColumnIndexType column) const
 {
     return row * m_blockSize + column;
 }

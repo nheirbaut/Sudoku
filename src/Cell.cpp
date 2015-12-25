@@ -1,23 +1,23 @@
---- src/Cell.cpp
-+++ src/Cell.cpp
-@@ -1,5 +1,20 @@
- #include "Cell.h"
- 
-+namespace Sudoku {
-+
- Cell::Cell()
- {
- }
-+
-+Cell &Cell::operator=(const Cell &rhs)
-+{
-+    if (this != &rhs)
-+    {
-+        if (rhs.m_value)
-+
-+    }
-+
-+    return *this;
-+}
-+
-+} // namespace Sudoku
+#include "Cell.h"
+
+namespace Sudoku {
+
+const Cell::ValueType Cell::UNSET_CELL_VALUE = 0;
+
+Cell::Cell()
+    : m_value(UNSET_CELL_VALUE)
+{
+}
+
+Cell& Cell::operator=(Cell::ValueType value)
+{
+    m_value = value;
+    return *this;
+}
+
+Cell::operator Cell::ValueType() const
+{
+    return m_value;
+}
+
+} // namespace Sudoku
