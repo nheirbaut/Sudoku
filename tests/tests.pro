@@ -8,6 +8,10 @@ TEMPLATE = app
 
 SOURCES += \
     TestBoardCreation.cpp \
-    TestBoardValueAccess.cpp
+    TestBoardValueAccess.cpp \
+    TestCellCreation.cpp \
+    TestCellValueAccess.cpp
 
 LIBS += -L../src -lSudokuSolver
+
+HEADERS +=

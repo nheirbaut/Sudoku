@@ -3,6 +3,7 @@
 #include <catch.hpp>
 
 #include "Board.h"
+#include "Cell.h"
 
 TEST_CASE("Cannot create a board that is not square", "[Board Creation]")
 {
@@ -21,7 +22,7 @@ TEST_CASE("Can create a board that is a perfect square", "[Board Creation]")
 
 TEST_CASE("A newly created board has all cells properly initialised", "[Board Creation]")
 {
-    const Sudoku::Board::CellType blockSize {9};
+    const Sudoku::Cell::ValueType blockSize {9};
     auto board = Sudoku::Board {blockSize};
     unsigned int numberOfCellsWithNoValueSet {0};
 
@@ -29,7 +30,7 @@ TEST_CASE("A newly created board has all cells properly initialised", "[Board Cr
     {
         for (Sudoku::Board::ColumnIndexType column {0}; column < blockSize; ++column)
         {
-            if (board.getValueForCell(row, column) == Sudoku::Board::UNSET_CELL_VALUE)
+            if (board.getValueForCellAt(row, column) == Sudoku::Cell::UNSET_CELL_VALUE)
             {
                 ++numberOfCellsWithNoValueSet;
             }
