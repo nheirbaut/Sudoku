@@ -17,7 +17,7 @@ public:
 
 public:
 
-    Cell();
+    Cell(ValueType maxValue);
 
     Cell& operator=(ValueType value);
 
@@ -26,6 +26,7 @@ public:
 private:
 
     ValueType m_value;
+    const ValueType m_maxValue;
 
 }; // class Cell
 

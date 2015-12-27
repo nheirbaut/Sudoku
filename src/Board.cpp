@@ -69,11 +69,6 @@ void Board::setValueForCell(Board::RowIndexType row, Board::ColumnIndexType colu
 {
     m_implementation->validateRowAndColumnIndex(row, column);
 
-    if (value > m_implementation->m_blockSize)
-    {
-        throw std::out_of_range("The value is too large");
-    }
-
     m_implementation->m_cells[m_implementation->getCellIndex(row, column)] = value;
 }
 
@@ -109,7 +104,7 @@ Board::const_iterator Board::cend() const
 
 Board::Implementation::Implementation(Cell::ValueType blockSize)
     : m_blockSize(blockSize),
-      m_cells(blockSize * blockSize)
+      m_cells(blockSize * blockSize, Cell(blockSize))
 {
 }
 
