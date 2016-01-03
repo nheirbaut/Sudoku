@@ -17,10 +17,22 @@ public:
 
 public:
 
+    /**
+     * @brief Cell
+     * @param maxValue
+     */
     Cell(ValueType maxValue);
 
+    /**
+     * @brief operator =
+     * @param value
+     * @return
+     */
     Cell& operator=(ValueType value);
 
+    /**
+     * @brief operator ValueType
+     */
     operator ValueType() const;
 
 private:

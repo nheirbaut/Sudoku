@@ -50,6 +50,9 @@ public:
      */
     explicit Board(Cell::ValueType blockSize);
 
+    /**
+     * Destructor
+     */
     ~Board();
 
     /**
@@ -75,13 +78,34 @@ public:
      */
     void setValueForCell(RowIndexType row, ColumnIndexType column, Cell::ValueType value);
 
+    /**
+     * @return Return an iterator pointing to the start position of the cells.
+     */
     iterator begin();
+
+    /**
+     * @return Return an iterator pointing to the end position of the cells.
+     */
     iterator end();
 
+    /**
+     * @return Return an iterator pointing to the start position of the cells.
+     */
     const_iterator begin() const;
+
+    /**
+     * @return Return an iterator pointing to the end position of the cells.
+     */
     const_iterator end() const;
 
+    /**
+     * @return Return an iterator pointing to the start position of the cells.
+     */
     const_iterator cbegin() const;
+
+    /**
+     * @return Return an iterator pointing to the end position of the cells.
+     */
     const_iterator cend() const;
 
 private:
