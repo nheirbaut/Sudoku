@@ -51,8 +51,6 @@ public:
     explicit Board(Cell::ValueType blockSize);
 
     ~Board();
-    Board(Board&&);
-    Board& operator=(Board&&);
 
     /**
      * Get the value at the given location on the board. The top-left location

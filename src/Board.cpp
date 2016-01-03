@@ -56,8 +56,6 @@ Board::Board(Cell::ValueType blockSize)
 }
 
 Board::~Board() = default;
-Board::Board(Board &&) = default;
-Board& Board::operator=(Board&&) = default;
 
 Cell::ValueType Board::getValueForCellAt(Board::RowIndexType row, Board::ColumnIndexType column) const
 {

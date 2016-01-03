@@ -23,7 +23,7 @@ TEST_CASE("Can create a board that is a perfect square", "[Board Creation]")
 TEST_CASE("A newly created board has all cells properly initialised", "[Board Creation]")
 {
     const Sudoku::Cell::ValueType blockSize {9};
-    auto board = Sudoku::Board {blockSize};
+    Sudoku::Board board {blockSize};
     unsigned int numberOfCellsWithNoValueSet {0};
 
     for (Sudoku::Board::RowIndexType row {0}; row < blockSize; ++row)
