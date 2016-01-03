@@ -30,7 +30,7 @@ TEST_CASE("A newly created grid has all cells properly initialised", "[Grid Crea
     {
         for (Sudoku::Grid::ColumnIndexType column {0}; column < blockSize; ++column)
         {
-            if (Grid.getValueForCellAt(row, column) == Sudoku::Cell::UNSET_CELL_VALUE)
+            if (grid.getValueForCellAt(row, column) == Sudoku::Cell::UNSET_CELL_VALUE)
             {
                 ++numberOfCellsWithNoValueSet;
             }
