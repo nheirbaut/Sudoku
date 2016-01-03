@@ -18,20 +18,22 @@ public:
 public:
 
     /**
-     * @brief Cell
-     * @param maxValue
+     * Cell constructor.
+     * @param maxValue The maximum value the Cell can represent.
      */
     Cell(ValueType maxValue);
 
     /**
-     * @brief operator =
-     * @param value
-     * @return
+     * Assignment operator to assign a new value to the Cell.
+     * @param value The value to set for the Cell.
+     * @return The reference to the changed Cell.
+     * @thow std::out_of_range If the @p value is larger than the maximum value
+     *                         during construction.
      */
     Cell& operator=(ValueType value);
 
     /**
-     * @brief operator ValueType
+     * Convert the Cell to its value.
      */
     operator ValueType() const;
 

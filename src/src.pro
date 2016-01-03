@@ -9,9 +9,9 @@ TEMPLATE = lib
 TARGET = SudokuSolver
 
 SOURCES += \
-    Board.cpp \
+    Grid.cpp \
     Cell.cpp
 
 HEADERS += \
-    Board.h \
+    Grid.h \
     Cell.h

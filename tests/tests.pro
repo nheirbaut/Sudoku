@@ -7,8 +7,8 @@ CONFIG -= qt
 TEMPLATE = app
 
 SOURCES += \
-    TestBoardCreation.cpp \
-    TestBoardValueAccess.cpp \
+    TestGridCreation.cpp \
+    TestGridValueAccess.cpp \
     TestCellCreation.cpp \
     TestCellValueAccess.cpp
 

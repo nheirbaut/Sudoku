@@ -1,4 +1,4 @@
-#include "Board.h"
+#include "Grid.h"
 
 #include <cmath>
 #include <limits>
@@ -24,9 +24,9 @@ maxValueOfCellType()
 }
 } // anonymous namespace
 
-const Cell::ValueType Board::MAX_BLOCKSIZE = maxValueOfCellType();
+const Cell::ValueType Grid::MAX_BLOCKSIZE = maxValueOfCellType();
 
-struct Board::Implementation
+struct Grid::Implementation
 {
     explicit Implementation(Cell::ValueType blockSize);
 
@@ -36,15 +36,15 @@ struct Board::Implementation
     const Cell::ValueType m_blockSize;
     std::vector<Cell> m_cells;
 
-}; // struct Board::Implementation
+}; // struct Grid::Implementation
 
-Board::Board(Cell::ValueType blockSize)
+Grid::Grid(Cell::ValueType blockSize)
     : m_implementation(std::make_unique<Implementation>(blockSize))
 {
     static_assert(std::is_integral<Cell::ValueType>::value, "You cannot use a non-integral type as CellType");
     static_assert(std::is_unsigned<Cell::ValueType>::value, "You cannot use a signed type as CellType");
 
-    if (blockSize > Board::MAX_BLOCKSIZE)
+    if (blockSize > Grid::MAX_BLOCKSIZE)
     {
         throw std::out_of_range("The block size is too large");
     }
@@ -55,63 +55,63 @@ Board::Board(Cell::ValueType blockSize)
     }
 }
 
-Board::~Board() = default;
+Grid::~Grid() = default;
 
-Cell::ValueType Board::getValueForCellAt(Board::RowIndexType row, Board::ColumnIndexType column) const
+Cell::ValueType Grid::getValueForCellAt(Grid::RowIndexType row, Grid::ColumnIndexType column) const
 {
     m_implementation->validateRowAndColumnIndex(row, column);
     return m_implementation->m_cells[m_implementation->getCellIndex(row, column)];
 }
 
-void Board::setValueForCell(Board::RowIndexType row, Board::ColumnIndexType column, Cell::ValueType value)
+void Grid::setValueForCell(Grid::RowIndexType row, Grid::ColumnIndexType column, Cell::ValueType value)
 {
     m_implementation->validateRowAndColumnIndex(row, column);
 
     m_implementation->m_cells[m_implementation->getCellIndex(row, column)] = value;
 }
 
-Board::iterator Board::begin()
+Grid::iterator Grid::begin()
 {
     return iterator(m_implementation->m_cells.begin());
 }
 
-Board::iterator Board::end()
+Grid::iterator Grid::end()
 {
     return iterator(m_implementation->m_cells.end());
 }
 
-Board::const_iterator Board::begin() const
+Grid::const_iterator Grid::begin() const
 {
     return const_iterator(m_implementation->m_cells.begin());
 }
 
-Board::const_iterator Board::end() const
+Grid::const_iterator Grid::end() const
 {
     return const_iterator(m_implementation->m_cells.end());
 }
 
-Board::const_iterator Board::cbegin() const
+Grid::const_iterator Grid::cbegin() const
 {
     return const_iterator(m_implementation->m_cells.cbegin());
 }
 
-Board::const_iterator Board::cend() const
+Grid::const_iterator Grid::cend() const
 {
     return const_iterator(m_implementation->m_cells.cend());
 }
 
-Board::Implementation::Implementation(Cell::ValueType blockSize)
+Grid::Implementation::Implementation(Cell::ValueType blockSize)
     : m_blockSize(blockSize),
       m_cells(blockSize * blockSize, Cell(blockSize))
 {
 }
 
-Cell::ValueType Board::Implementation::getCellIndex(Board::RowIndexType row, Board::ColumnIndexType column) const
+Cell::ValueType Grid::Implementation::getCellIndex(Grid::RowIndexType row, Grid::ColumnIndexType column) const
 {
     return row * m_blockSize + column;
 }
 
-void Board::Implementation::validateRowAndColumnIndex(Board::RowIndexType row, Board::ColumnIndexType column) const
+void Grid::Implementation::validateRowAndColumnIndex(Grid::RowIndexType row, Grid::ColumnIndexType column) const
 {
     if (row >= m_blockSize)
     {

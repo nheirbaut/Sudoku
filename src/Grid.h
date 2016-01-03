@@ -1,5 +1,5 @@
-#ifndef BOARD_H
-#define BOARD_H
+#ifndef GRID_H
+#define GRID_H
 
 #include "Cell.h"
 
@@ -11,9 +11,9 @@
 namespace Sudoku {
 
 /**
- * @brief The Board class
+ * @brief The Grid class
  */
-class Board
+class Grid
 {
 public:
 
@@ -39,41 +39,41 @@ public:
 public:
 
     /**
-     * Creates a new Sudoku board.
-     * A Sudoku board must always be a square composed of other squares that
-     * have exactly as many elements as the rib of the entire Sudoku board.
-     * @param blockSize The block size for the board. On a standard Sudoku board
+     * Creates a new Sudoku grid.
+     * A Sudoku grid must always be a square composed of other squares that
+     * have exactly as many elements as the rib of the entire Sudoku grid.
+     * @param blockSize The block size for the grid. On a standard Sudoku grid
      *                  this value will be 9.
      * @throw std::invalid_argument if @p blockSize does not lead to a square
-     *                              Sudoku board.
-     * @throw std::out_of_range if @p blockSize exceeds Board::MAX_CELL_VALUE.
+     *                              Sudoku grid.
+     * @throw std::out_of_range if @p blockSize exceeds Grid::MAX_CELL_VALUE.
      */
-    explicit Board(Cell::ValueType blockSize);
+    explicit Grid(Cell::ValueType blockSize);
 
     /**
      * Destructor
      */
-    ~Board();
+    ~Grid();
 
     /**
-     * Get the value at the given location on the board. The top-left location
+     * Get the value at the given location on the grid. The top-left location
      * is coordinate (0,0);
-     * @param row The row index of the value on the board
-     * @param column The column index of the value on the board
-     * @return The set value at the given row and column on the board.
+     * @param row The row index of the value on the grid
+     * @param column The column index of the value on the grid
+     * @return The set value at the given row and column on the grid.
      * @throw std::out_of_range if the values for @p row or @p column are
-     *                          off the defined board.
+     *                          off the defined grid.
      */
     Cell::ValueType getValueForCellAt(RowIndexType row, ColumnIndexType column) const;
 
     /**
-     * Set the given value at the given location on the board. The top-left
+     * Set the given value at the given location on the grid. The top-left
      * location is coordinate (0,0).
-     * @param row The row index of the value on the board
-     * @param column The column index of the value on the board
-     * @param value The value to set on the board.
+     * @param row The row index of the value on the grid
+     * @param column The column index of the value on the grid
+     * @param value The value to set on the grid.
      * @throw std::out_of_range if the values for @p row or @p column are
-     *                          off the defined board or if the value of
+     *                          off the defined grid or if the value of
      *                          @p value is too large.
      */
     void setValueForCell(RowIndexType row, ColumnIndexType column, Cell::ValueType value);
@@ -113,8 +113,8 @@ private:
     struct Implementation;
     std::unique_ptr<Implementation> m_implementation;
 
-}; // class Board
+}; // class Grid
 
 } // namespace Sudoku
 
-#endif // BOARD_H
+#endif // GRID_H
