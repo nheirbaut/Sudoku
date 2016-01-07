@@ -10,7 +10,8 @@ SOURCES += \
     TestGridCreation.cpp \
     TestGridValueAccess.cpp \
     TestCellCreation.cpp \
-    TestCellValueAccess.cpp
+    TestCellValueAccess.cpp \
+    TestMain.cpp
 
 LIBS += -L../src -lSudokuSolver
 
