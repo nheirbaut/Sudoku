@@ -9,7 +9,6 @@ TEMPLATE = app
 SOURCES += \
     TestGridCreation.cpp \
     TestGridValueAccess.cpp \
-    TestCellCreation.cpp \
     TestCellValueAccess.cpp \
     TestMain.cpp
 
