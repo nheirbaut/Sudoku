@@ -2,7 +2,7 @@
 
 #include <stdexcept>
 
-namespace Sudoku {
+using namespace Sudoku;
 
 const Cell::ValueType Cell::UNSET_CELL_VALUE = 0;
 
@@ -27,5 +27,3 @@ Cell::operator Cell::ValueType() const
 {
     return m_value;
 }
-
-} // namespace Sudoku
