@@ -2,9 +2,7 @@
 #define GRID_H
 
 #include "Cell.h"
-
-#include <boost/range/concepts.hpp>
-#include <boost/range/detail/any_iterator.hpp>
+#include "CellIterator.h"
 
 #include <memory>
 
@@ -20,19 +18,8 @@ public:
     using RowIndexType = Cell::ValueType;
     using ColumnIndexType = Cell::ValueType;
 
-    using iterator = boost::range_detail::any_iterator<
-                        Cell,
-                        boost::forward_traversal_tag,
-                        Cell&,
-                        std::ptrdiff_t
-                     >;
-
-    using const_iterator = boost::range_detail::any_iterator<
-                            const Cell,
-                            boost::forward_traversal_tag,
-                            const Cell&,
-                            std::ptrdiff_t
-                           >;
+    using iterator = CellIterator;
+    using const_iterator = CellIterator;
 
     static const Cell::ValueType MAX_BLOCKSIZE;
 

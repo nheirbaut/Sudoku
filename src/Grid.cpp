@@ -72,32 +72,32 @@ void Grid::setValueForCell(Grid::RowIndexType row, Grid::ColumnIndexType column,
 
 Grid::iterator Grid::begin()
 {
-    return iterator(m_implementation->m_cells.begin());
+    return iterator(&m_implementation->m_cells[0]);
 }
 
 Grid::iterator Grid::end()
 {
-    return iterator(m_implementation->m_cells.end());
+    return iterator(&(*m_implementation->m_cells.end()));
 }
 
 Grid::const_iterator Grid::begin() const
 {
-    return const_iterator(m_implementation->m_cells.begin());
+    return const_iterator(&m_implementation->m_cells[0]);
 }
 
 Grid::const_iterator Grid::end() const
 {
-    return const_iterator(m_implementation->m_cells.end());
+    return const_iterator(&(*m_implementation->m_cells.end()));
 }
 
 Grid::const_iterator Grid::cbegin() const
 {
-    return const_iterator(m_implementation->m_cells.cbegin());
+    return const_iterator(&m_implementation->m_cells[0]);
 }
 
 Grid::const_iterator Grid::cend() const
 {
-    return const_iterator(m_implementation->m_cells.cend());
+    return const_iterator(&(*m_implementation->m_cells.end()));
 }
 
 Grid::Implementation::Implementation(Cell::ValueType blockSize)
