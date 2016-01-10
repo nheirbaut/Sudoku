@@ -18,9 +18,6 @@ public:
     using RowIndexType = Cell::ValueType;
     using ColumnIndexType = Cell::ValueType;
 
-    using iterator = CellIterator;
-    using const_iterator = CellIterator;
-
     static const Cell::ValueType MAX_BLOCKSIZE;
 
 public:
@@ -68,32 +65,32 @@ public:
     /**
      * @return Return an iterator pointing to the start position of the cells.
      */
-    iterator begin();
+    CellIterator begin();
 
     /**
      * @return Return an iterator pointing to the end position of the cells.
      */
-    iterator end();
+    CellIterator end();
 
     /**
      * @return Return an iterator pointing to the start position of the cells.
      */
-    const_iterator begin() const;
+    CellIterator begin() const;
 
     /**
      * @return Return an iterator pointing to the end position of the cells.
      */
-    const_iterator end() const;
+    CellIterator end() const;
 
     /**
      * @return Return an iterator pointing to the start position of the cells.
      */
-    const_iterator cbegin() const;
+    CellIterator cbegin() const;
 
     /**
      * @return Return an iterator pointing to the end position of the cells.
      */
-    const_iterator cend() const;
+    CellIterator cend() const;
 
 private:
 
