@@ -1,7 +1,7 @@
 #ifndef CELLITERATORTEMPLATE
 #define CELLITERATORTEMPLATE
 
-#include <Cell.h>
+#include "Cell.h"
 
 #include <iterator>
 #include <type_traits>
