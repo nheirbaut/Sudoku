@@ -79,24 +79,24 @@ CellIterator Grid::end()
     return CellIterator(&(*m_implementation->m_cells.end()));
 }
 
-CellIterator Grid::begin() const
+ConstCellIterator Grid::begin() const
 {
-    return CellIterator(&m_implementation->m_cells[0]);
+    return ConstCellIterator(&m_implementation->m_cells[0]);
 }
 
-CellIterator Grid::end() const
+ConstCellIterator Grid::end() const
 {
-    return CellIterator(&(*m_implementation->m_cells.end()));
+    return ConstCellIterator(&(*m_implementation->m_cells.end()));
 }
 
-CellIterator Grid::cbegin() const
+ConstCellIterator Grid::cbegin() const
 {
-    return CellIterator(&m_implementation->m_cells[0]);
+    return ConstCellIterator(&m_implementation->m_cells[0]);
 }
 
-CellIterator Grid::cend() const
+ConstCellIterator Grid::cend() const
 {
-    return CellIterator(&(*m_implementation->m_cells.end()));
+    return ConstCellIterator(&(*m_implementation->m_cells.end()));
 }
 
 Grid::Implementation::Implementation(Cell::ValueType blockSize)

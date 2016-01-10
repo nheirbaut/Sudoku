@@ -11,9 +11,8 @@ TARGET = SudokuSolver
 SOURCES += \
     Grid.cpp \
     Cell.cpp \
-    CellIterator.cpp
 
 HEADERS += \
     Grid.h \
     Cell.h \
-    CellIterator.h
+    CellIterators.h

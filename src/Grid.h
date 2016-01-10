@@ -2,7 +2,7 @@
 #define GRID_H
 
 #include "Cell.h"
-#include "CellIterator.h"
+#include "CellIterators.h"
 
 #include <memory>
 
@@ -75,22 +75,22 @@ public:
     /**
      * @return Return an iterator pointing to the start position of the cells.
      */
-    CellIterator begin() const;
+    ConstCellIterator begin() const;
 
     /**
      * @return Return an iterator pointing to the end position of the cells.
      */
-    CellIterator end() const;
+    ConstCellIterator end() const;
 
     /**
      * @return Return an iterator pointing to the start position of the cells.
      */
-    CellIterator cbegin() const;
+    ConstCellIterator cbegin() const;
 
     /**
      * @return Return an iterator pointing to the end position of the cells.
      */
-    CellIterator cend() const;
+    ConstCellIterator cend() const;
 
 private:
 
