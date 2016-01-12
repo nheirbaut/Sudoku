@@ -1,5 +1,5 @@
-#ifndef CELLITERATORTEMPLATE
-#define CELLITERATORTEMPLATE
+#ifndef CELLITERATORS_H
+#define CELLITERATORS_H
 
 #include "Cell.h"
 
@@ -35,12 +35,12 @@ public:
         return tmp;
     }
 
-    bool operator==(const CellIteratorTemplate& rhs)
+    bool operator==(const CellIteratorTemplate& rhs) const
     {
         return m_currentCellInGridPointer == rhs.m_currentCellInGridPointer;
     }
 
-    bool operator!=(const CellIteratorTemplate& rhs)
+    bool operator!=(const CellIteratorTemplate& rhs) const
     {
         return m_currentCellInGridPointer != rhs.m_currentCellInGridPointer;
     }
@@ -66,5 +66,5 @@ using ConstCellIterator = CellIteratorTemplate<const Cell>;
 
 } // namespace Sudoku
 
-#endif // CELLITERATORTEMPLATE
+#endif // CELLITERATORS_H
 
