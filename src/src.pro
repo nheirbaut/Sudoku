@@ -10,9 +10,11 @@ TARGET = SudokuSolver
 
 SOURCES += \
     Grid.cpp \
-    Cell.cpp \
+    Cell.cpp
 
 HEADERS += \
     Grid.h \
     Cell.h \
-    CellIterators.h
+    CellIterators.h \
+    RowIterators.h \
+    Row.h

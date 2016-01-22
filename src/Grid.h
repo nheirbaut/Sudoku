@@ -3,6 +3,7 @@
 
 #include "Cell.h"
 #include "CellIterators.h"
+#include "RowIterators.h"
 
 #include <memory>
 
@@ -65,32 +66,27 @@ public:
     /**
      * @return Return an iterator pointing to the start position of the cells.
      */
-    CellIterator begin();
+    CellIterator CellBegin();
 
     /**
      * @return Return an iterator pointing to the end position of the cells.
      */
-    CellIterator end();
+    CellIterator CellEnd();
 
     /**
      * @return Return an iterator pointing to the start position of the cells.
      */
-    ConstCellIterator begin() const;
+    ConstCellIterator ConstCellBegin() const;
 
     /**
      * @return Return an iterator pointing to the end position of the cells.
      */
-    ConstCellIterator end() const;
+    ConstCellIterator ConstCellEnd() const;
 
-    /**
-     * @return Return an iterator pointing to the start position of the cells.
-     */
-    ConstCellIterator cbegin() const;
-
-    /**
-     * @return Return an iterator pointing to the end position of the cells.
-     */
-    ConstCellIterator cend() const;
+    RowIterator RowBegin();
+    RowIterator RowEnd();
+    ConstRowIterator ConstRowBegin() const;
+    ConstRowIterator ConstRowEnd() const;
 
 private:
 

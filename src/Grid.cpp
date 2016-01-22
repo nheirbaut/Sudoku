@@ -69,34 +69,44 @@ void Grid::setValueForCell(Grid::RowIndexType row, Grid::ColumnIndexType column,
     m_implementation->m_cells[m_implementation->getCellIndex(row, column)] = value;
 }
 
-CellIterator Grid::begin()
+CellIterator Grid::CellBegin()
 {
     return CellIterator(&m_implementation->m_cells[0]);
 }
 
-CellIterator Grid::end()
+CellIterator Grid::CellEnd()
 {
     return CellIterator(&(*m_implementation->m_cells.end()));
 }
 
-ConstCellIterator Grid::begin() const
+ConstCellIterator Grid::ConstCellBegin() const
 {
     return ConstCellIterator(&m_implementation->m_cells[0]);
 }
 
-ConstCellIterator Grid::end() const
+ConstCellIterator Grid::ConstCellEnd() const
 {
     return ConstCellIterator(&(*m_implementation->m_cells.end()));
 }
 
-ConstCellIterator Grid::cbegin() const
+RowIterator Grid::RowBegin()
 {
-    return ConstCellIterator(&m_implementation->m_cells[0]);
+    return RowIterator(&m_implementation->m_cells[0], m_implementation->m_blockSize);
 }
 
-ConstCellIterator Grid::cend() const
+RowIterator Grid::RowEnd()
 {
-    return ConstCellIterator(&(*m_implementation->m_cells.end()));
+    return RowIterator(&m_implementation->m_cells[m_implementation->m_blockSize], 0);
+}
+
+ConstRowIterator Grid::ConstRowBegin() const
+{
+    return ConstRowIterator(&m_implementation->m_cells[0], m_implementation->m_blockSize);
+}
+
+ConstRowIterator Grid::ConstRowEnd() const
+{
+    return ConstRowIterator(&m_implementation->m_cells[m_implementation->m_blockSize], 0);
 }
 
 Grid::Implementation::Implementation(Cell::ValueType blockSize)
