@@ -13,7 +13,7 @@ TEST_CASE("Cannot set a cell value larger than the set maximum", "[Cell Access]"
 TEST_CASE("Can convert a cell directly to its value", "[Cell Access]")
 {
     const Sudoku::Cell::ValueType maximumCellValue {2};
-    const auto cellTestValue {maximumCellValue - 1};
+    const Sudoku::Cell::ValueType cellTestValue {maximumCellValue - 1};
     Sudoku::Cell cell {maximumCellValue};
 
     cell = cellTestValue;
