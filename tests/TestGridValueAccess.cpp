@@ -105,6 +105,36 @@ TEST_CASE("Can iterate over all rows", "[Grid Access]")
     REQUIRE(numberOfRows == blockSize);
 }
 
+TEST_CASE("Can const iterate over all columns", "[Grid Access]")
+{
+    const Sudoku::Cell::ValueType blockSize {9};
+    Sudoku::Grid board {blockSize};
+
+    Sudoku::Cell::ValueType numberOfColumns {0};
+
+    for (auto columnIterator = board.ConstColumnBegin(); columnIterator != board.ConstColumnEnd(); ++columnIterator)
+    {
+        ++numberOfColumns;
+    }
+
+    REQUIRE(numberOfColumns == blockSize);
+}
+
+TEST_CASE("Can iterate over all columns", "[Grid Access]")
+{
+    const Sudoku::Cell::ValueType blockSize {9};
+    Sudoku::Grid board {blockSize};
+
+    Sudoku::Cell::ValueType numberOfColumns {0};
+
+    for (auto columnIterator = board.ColumnBegin(); columnIterator != board.ColumnEnd(); ++columnIterator)
+    {
+        ++numberOfColumns;
+    }
+
+    REQUIRE(numberOfColumns == blockSize);
+}
+
 TEST_CASE("Can const iterate over all rows", "[Grid Access]")
 {
     const Sudoku::Cell::ValueType blockSize {9};

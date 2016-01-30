@@ -17,4 +17,6 @@ HEADERS += \
     Cell.h \
     CellIterators.h \
     RowIterators.h \
-    Row.h
+    Row.h \
+    ColumnIterators.h \
+    Column.h

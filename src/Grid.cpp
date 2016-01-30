@@ -109,6 +109,26 @@ ConstRowIterator Grid::ConstRowEnd() const
     return ConstRowIterator(&(*m_implementation->m_cells.end()), 0);
 }
 
+ColumnIterator Grid::ColumnBegin()
+{
+    return ColumnIterator(&m_implementation->m_cells[0], m_implementation->m_blockSize);
+}
+
+ColumnIterator Grid::ColumnEnd()
+{
+    return ColumnIterator(&m_implementation->m_cells[m_implementation->m_blockSize], 0);
+}
+
+ConstColumnIterator Grid::ConstColumnBegin() const
+{
+    return ConstColumnIterator(&m_implementation->m_cells[0], m_implementation->m_blockSize);
+}
+
+ConstColumnIterator Grid::ConstColumnEnd() const
+{
+    return ConstColumnIterator(&m_implementation->m_cells[m_implementation->m_blockSize], 0);
+}
+
 Grid::Implementation::Implementation(Cell::ValueType blockSize)
     : m_blockSize(blockSize),
       m_cells(blockSize * blockSize, Cell(blockSize))

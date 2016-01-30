@@ -3,6 +3,7 @@
 
 #include "Cell.h"
 #include "CellIterators.h"
+#include "ColumnIterators.h"
 #include "RowIterators.h"
 
 #include <memory>
@@ -87,6 +88,11 @@ public:
     RowIterator RowEnd();
     ConstRowIterator ConstRowBegin() const;
     ConstRowIterator ConstRowEnd() const;
+
+    ColumnIterator ColumnBegin();
+    ColumnIterator ColumnEnd();
+    ConstColumnIterator ConstColumnBegin() const;
+    ConstColumnIterator ConstColumnEnd() const;
 
 private:
 
