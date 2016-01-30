@@ -7,6 +7,14 @@
 #include <iterator>
 #include <type_traits>
 
+// Code created with the help of Stack Exhange question
+// https://codereview.stackexchange.com/questions/74609/custom-iterator-for-a-linked-list-class
+// Question by PRP:
+// https://codereview.stackexchange.com/users/61711/prp
+// Answer by glampert:
+// https://codereview.stackexchange.com/users/39810/glampert
+
+
 namespace Sudoku {
 
 template
