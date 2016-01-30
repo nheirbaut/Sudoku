@@ -1,5 +1,5 @@
-#ifndef ROWITERATORS
-#define ROWITERATORS
+#ifndef ROWITERATORS_H
+#define ROWITERATORS_H
 
 #include "Cell.h"
 #include "Row.h"
@@ -102,5 +102,5 @@ using ConstRowIterator = RowIteratorTemplate<const Cell>;
 
 } // namespace Sudoku
 
-#endif // ROWITERATORS
+#endif // ROWITERATORS_H
 
