@@ -90,6 +90,36 @@ TEST_CASE("Can change board values using iterators", "[Grid Access]")
     REQUIRE(numberOfCorrectlySetTestValues == blockSize * blockSize);
 }
 
+TEST_CASE("Can iterate over all rows", "[Grid Access]")
+{
+    const Sudoku::Cell::ValueType blockSize {9};
+    Sudoku::Grid board {blockSize};
+
+    Sudoku::Cell::ValueType numberOfRows {0};
+
+    for (auto rowIterator = board.RowBegin(); rowIterator != board.RowEnd(); ++rowIterator)
+    {
+        ++numberOfRows;
+    }
+
+    REQUIRE(numberOfRows == blockSize);
+}
+
+TEST_CASE("Can const iterate over all rows", "[Grid Access]")
+{
+    const Sudoku::Cell::ValueType blockSize {9};
+    Sudoku::Grid board {blockSize};
+
+    Sudoku::Cell::ValueType numberOfRows {0};
+
+    for (auto rowIterator = board.ConstRowBegin(); rowIterator != board.ConstRowEnd(); ++rowIterator)
+    {
+        ++numberOfRows;
+    }
+
+    REQUIRE(numberOfRows == blockSize);
+}
+
 TEST_CASE("Cannot set a cell to an invalid value using an iterator", "[Grid Access]")
 {
     const Sudoku::Cell::ValueType blockSize {1};

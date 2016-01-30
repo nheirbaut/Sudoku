@@ -96,7 +96,7 @@ RowIterator Grid::RowBegin()
 
 RowIterator Grid::RowEnd()
 {
-    return RowIterator(&m_implementation->m_cells[m_implementation->m_blockSize], 0);
+    return RowIterator(&(*m_implementation->m_cells.end()), 0);
 }
 
 ConstRowIterator Grid::ConstRowBegin() const
@@ -106,7 +106,7 @@ ConstRowIterator Grid::ConstRowBegin() const
 
 ConstRowIterator Grid::ConstRowEnd() const
 {
-    return ConstRowIterator(&m_implementation->m_cells[m_implementation->m_blockSize], 0);
+    return ConstRowIterator(&(*m_implementation->m_cells.end()), 0);
 }
 
 Grid::Implementation::Implementation(Cell::ValueType blockSize)
