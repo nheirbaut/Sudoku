@@ -59,7 +59,7 @@ TEST_CASE("Can iterate over all grid cells", "[Grid Access]")
     Sudoku::Grid grid {blockSize};
 
     std::size_t numberOfCellsOnGrid {0};
-    for (auto gridIterator = grid.ConstCellBegin(); gridIterator != grid.ConstCellEnd(); ++gridIterator)
+    for (auto& cell : grid.cells())
     {
         ++numberOfCellsOnGrid;
     }
@@ -73,15 +73,15 @@ TEST_CASE("Can change grid values using iterators", "[Grid Access]")
     const Sudoku::Cell::ValueType blockSize {4};
     Sudoku::Grid grid {blockSize};
 
-    for (auto gridIterator = grid.CellBegin(); gridIterator != grid.CellEnd(); ++gridIterator)
+    for (auto& cell : grid.cells())
     {
-        *gridIterator = testValue;
+        cell = testValue;
     }
 
     std::size_t numberOfCorrectlySetTestValues {0};
-    for (auto gridIterator = grid.ConstCellBegin(); gridIterator != grid.ConstCellEnd(); ++gridIterator)
+    for (const auto& cell : grid.cells())
     {
-        if (*gridIterator == testValue)
+        if (cell == testValue)
         {
             ++numberOfCorrectlySetTestValues;
         }
@@ -155,5 +155,5 @@ TEST_CASE("Cannot set a cell to an invalid value using an iterator", "[Grid Acce
     const Sudoku::Cell::ValueType blockSize {1};
     Sudoku::Grid grid {blockSize};
 
-    REQUIRE_THROWS_AS(*grid.CellBegin() = Sudoku::Grid::MAX_BLOCKSIZE + 1, std::out_of_range);
+    REQUIRE_THROWS_AS(*grid.cells().begin() = Sudoku::Grid::MAX_BLOCKSIZE + 1, std::out_of_range);
 }

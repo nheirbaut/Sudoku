@@ -2,7 +2,7 @@
 #define GRID_H
 
 #include "Cell.h"
-#include "CellIterators.h"
+#include "CellCollection.h"
 #include "ColumnIterators.h"
 #include "RowIterators.h"
 
@@ -41,6 +41,8 @@ public:
      */
     ~Grid();
 
+    CellCollection cells();
+
     /**
      * Get the value at the given location on the grid. The top-left location
      * is coordinate (0,0);
@@ -63,26 +65,6 @@ public:
      *                          @p value is too large.
      */
     void setValueForCell(RowIndexType row, ColumnIndexType column, Cell::ValueType value);
-
-    /**
-     * @return Return an iterator pointing to the start position of the cells.
-     */
-    CellIterator CellBegin();
-
-    /**
-     * @return Return an iterator pointing to the end position of the cells.
-     */
-    CellIterator CellEnd();
-
-    /**
-     * @return Return an iterator pointing to the start position of the cells.
-     */
-    ConstCellIterator ConstCellBegin() const;
-
-    /**
-     * @return Return an iterator pointing to the end position of the cells.
-     */
-    ConstCellIterator ConstCellEnd() const;
 
     RowIterator RowBegin();
     RowIterator RowEnd();
