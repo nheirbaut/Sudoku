@@ -60,6 +60,11 @@ Cells Grid::cells()
     return Cells(&m_implementation->m_cells[0], m_implementation->m_cells.size());
 }
 
+Rows Grid::rows()
+{
+    return Rows(&m_implementation->m_cells[0], m_implementation->m_blockSize);
+}
+
 Grid::~Grid() = default;
 
 Cell::ValueType Grid::getValueForCellAt(Grid::RowIndexType row, Grid::ColumnIndexType column) const
@@ -72,26 +77,6 @@ void Grid::setValueForCell(Grid::RowIndexType row, Grid::ColumnIndexType column,
 {
     m_implementation->validateRowAndColumnIndex(row, column);
     m_implementation->m_cells[m_implementation->getCellIndex(row, column)] = value;
-}
-
-RowIterator Grid::RowBegin()
-{
-    return RowIterator(&m_implementation->m_cells[0], m_implementation->m_blockSize);
-}
-
-RowIterator Grid::RowEnd()
-{
-    return RowIterator(&(*m_implementation->m_cells.end()), 0);
-}
-
-ConstRowIterator Grid::ConstRowBegin() const
-{
-    return ConstRowIterator(&m_implementation->m_cells[0], m_implementation->m_blockSize);
-}
-
-ConstRowIterator Grid::ConstRowEnd() const
-{
-    return ConstRowIterator(&(*m_implementation->m_cells.end()), 0);
 }
 
 ColumnIterator Grid::ColumnBegin()

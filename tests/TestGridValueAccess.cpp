@@ -97,7 +97,22 @@ TEST_CASE("Can iterate over all rows", "[Grid Access]")
 
     Sudoku::Cell::ValueType numberOfRows {0};
 
-    for (auto rowIterator = grid.RowBegin(); rowIterator != grid.RowEnd(); ++rowIterator)
+    for (auto rowIterator = grid.rows().begin(); rowIterator != grid.rows().end(); ++rowIterator)
+    {
+        ++numberOfRows;
+    }
+
+    REQUIRE(numberOfRows == blockSize);
+}
+
+TEST_CASE("Can const iterate over all rows", "[Grid Access]")
+{
+    const Sudoku::Cell::ValueType blockSize {9};
+    Sudoku::Grid grid {blockSize};
+
+    Sudoku::Cell::ValueType numberOfRows {0};
+
+    for (auto rowIterator = grid.rows().cbegin(); rowIterator != grid.rows().cend(); ++rowIterator)
     {
         ++numberOfRows;
     }
@@ -133,21 +148,6 @@ TEST_CASE("Can iterate over all columns", "[Grid Access]")
     }
 
     REQUIRE(numberOfColumns == blockSize);
-}
-
-TEST_CASE("Can const iterate over all rows", "[Grid Access]")
-{
-    const Sudoku::Cell::ValueType blockSize {9};
-    Sudoku::Grid grid {blockSize};
-
-    Sudoku::Cell::ValueType numberOfRows {0};
-
-    for (auto rowIterator = grid.ConstRowBegin(); rowIterator != grid.ConstRowEnd(); ++rowIterator)
-    {
-        ++numberOfRows;
-    }
-
-    REQUIRE(numberOfRows == blockSize);
 }
 
 TEST_CASE("Cannot set a cell to an invalid value using an iterator", "[Grid Access]")

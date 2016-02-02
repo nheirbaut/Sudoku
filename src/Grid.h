@@ -5,6 +5,7 @@
 #include "Cells.h"
 #include "ColumnIterators.h"
 #include "RowIterators.h"
+#include "Rows.h"
 
 #include <memory>
 
@@ -42,6 +43,7 @@ public:
     ~Grid();
 
     Cells cells();
+    Rows rows();
 
     /**
      * Get the value at the given location on the grid. The top-left location
@@ -65,11 +67,6 @@ public:
      *                          @p value is too large.
      */
     void setValueForCell(RowIndexType row, ColumnIndexType column, Cell::ValueType value);
-
-    RowIterator RowBegin();
-    RowIterator RowEnd();
-    ConstRowIterator ConstRowBegin() const;
-    ConstRowIterator ConstRowEnd() const;
 
     ColumnIterator ColumnBegin();
     ColumnIterator ColumnEnd();
