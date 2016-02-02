@@ -1,39 +1,39 @@
-#include "CellCollection.h"
+#include "Cells.h"
 
 using namespace Sudoku;
 
-CellCollection::CellCollection(Cell *startingCell, std::size_t size)
+Cells::Cells(Cell *startingCell, std::size_t size)
     : m_startingCell(startingCell),
       m_collectionSize(size)
 {
 }
 
-CellIterator CellCollection::begin()
+CellIterator Cells::begin()
 {
     return CellIterator(m_startingCell);
 }
 
-CellIterator CellCollection::end()
+CellIterator Cells::end()
 {
     return CellIterator(m_startingCell + m_collectionSize);
 }
 
-ConstCellIterator CellCollection::begin() const
+ConstCellIterator Cells::begin() const
 {
     return ConstCellIterator(m_startingCell);
 }
 
-ConstCellIterator CellCollection::end() const
+ConstCellIterator Cells::end() const
 {
     return ConstCellIterator(m_startingCell + m_collectionSize);
 }
 
-ConstCellIterator CellCollection::cbegin() const
+ConstCellIterator Cells::cbegin() const
 {
     return ConstCellIterator(m_startingCell);
 }
 
-ConstCellIterator CellCollection::cend() const
+ConstCellIterator Cells::cend() const
 {
     return ConstCellIterator(m_startingCell + m_collectionSize);
 }

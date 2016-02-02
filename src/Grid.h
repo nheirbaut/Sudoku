@@ -2,7 +2,7 @@
 #define GRID_H
 
 #include "Cell.h"
-#include "CellCollection.h"
+#include "Cells.h"
 #include "ColumnIterators.h"
 #include "RowIterators.h"
 
@@ -41,7 +41,7 @@ public:
      */
     ~Grid();
 
-    CellCollection cells();
+    Cells cells();
 
     /**
      * Get the value at the given location on the grid. The top-left location

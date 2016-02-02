@@ -55,9 +55,9 @@ Grid::Grid(Cell::ValueType blockSize)
     }
 }
 
-CellCollection Grid::cells()
+Cells Grid::cells()
 {
-    return CellCollection(&m_implementation->m_cells[0], m_implementation->m_cells.size());
+    return Cells(&m_implementation->m_cells[0], m_implementation->m_cells.size());
 }
 
 Grid::~Grid() = default;
