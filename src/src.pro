@@ -12,7 +12,8 @@ SOURCES += \
     Grid.cpp \
     Cell.cpp \
     Cells.cpp \
-    Rows.cpp
+    Rows.cpp \
+    Columns.cpp
 
 HEADERS += \
     Grid.h \
@@ -23,4 +24,5 @@ HEADERS += \
     ColumnIterators.h \
     Column.h \
     Cells.h \
-    Rows.h
+    Rows.h \
+    Columns.h

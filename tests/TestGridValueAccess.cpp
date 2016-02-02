@@ -120,21 +120,6 @@ TEST_CASE("Can const iterate over all rows", "[Grid Access]")
     REQUIRE(numberOfRows == blockSize);
 }
 
-TEST_CASE("Can const iterate over all columns", "[Grid Access]")
-{
-    const Sudoku::Cell::ValueType blockSize {9};
-    Sudoku::Grid grid {blockSize};
-
-    Sudoku::Cell::ValueType numberOfColumns {0};
-
-    for (auto columnIterator = grid.ConstColumnBegin(); columnIterator != grid.ConstColumnEnd(); ++columnIterator)
-    {
-        ++numberOfColumns;
-    }
-
-    REQUIRE(numberOfColumns == blockSize);
-}
-
 TEST_CASE("Can iterate over all columns", "[Grid Access]")
 {
     const Sudoku::Cell::ValueType blockSize {9};
@@ -142,7 +127,22 @@ TEST_CASE("Can iterate over all columns", "[Grid Access]")
 
     Sudoku::Cell::ValueType numberOfColumns {0};
 
-    for (auto columnIterator = grid.ColumnBegin(); columnIterator != grid.ColumnEnd(); ++columnIterator)
+    for (auto columnIterator = grid.columns().begin(); columnIterator != grid.columns().end(); ++columnIterator)
+    {
+        ++numberOfColumns;
+    }
+
+    REQUIRE(numberOfColumns == blockSize);
+}
+
+TEST_CASE("Can const iterate over all columns", "[Grid Access]")
+{
+    const Sudoku::Cell::ValueType blockSize {9};
+    Sudoku::Grid grid {blockSize};
+
+    Sudoku::Cell::ValueType numberOfColumns {0};
+
+    for (auto columnIterator = grid.columns().cbegin(); columnIterator != grid.columns().cend(); ++columnIterator)
     {
         ++numberOfColumns;
     }
