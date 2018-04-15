@@ -27,8 +27,8 @@ public:
      * Assignment operator to assign a new value to the Cell.
      * @param value The value to set for the Cell.
      * @return The reference to the changed Cell.
-     * @thow std::out_of_range If the @p value is larger than the maximum value
-     *                         during construction.
+     * @throw std::out_of_range If the @p value is larger than the maximum value
+     *                          during construction.
      */
     Cell& operator=(ValueType value);
 
