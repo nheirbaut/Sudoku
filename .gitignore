@@ -1,3 +1,4 @@
 build/
 Sudoku.pro.user*
 *.autosave
+.idea/
